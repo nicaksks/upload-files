@@ -2,9 +2,11 @@ package routes
 
 import (
 	"cdn/backend/utils"
+	"math/rand"
 	"mime/multipart"
 	"net/http"
 	"path/filepath"
+	"strconv"
 	"strings"
 
 	"github.com/gin-gonic/gin"
@@ -53,7 +55,9 @@ func Save(file *multipart.FileHeader, c *gin.Context) {
 		return
 	}
 
-	err := c.SaveUploadedFile(file, folder+file.Filename)
+	path := folder + strings.Replace(file.Filename, ".", strconv.Itoa(rand.Intn(10000))+".", 1)
+
+	err := c.SaveUploadedFile(file, path)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"code":    http.StatusBadRequest,
@@ -65,6 +69,6 @@ func Save(file *multipart.FileHeader, c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"code":    http.StatusOK,
 		"message": "Success",
-		"path":    domain + strings.Replace(folder, "files/", "", 1) + file.Filename,
+		"path":    domain + strings.Replace(folder, "files/", "", 1) + path,
 	})
 }
