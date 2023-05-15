@@ -1,9 +1,7 @@
 package main
 
-import (
-	routers "cdn/backend"
-)
+import "cdn/backend"
 
 func main() {
-	routers.Start()
+	backend.Start()
 }
