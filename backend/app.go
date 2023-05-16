@@ -4,6 +4,7 @@ import (
 	"cdn/backend/routes"
 	"cdn/backend/utils"
 	"fmt"
+	"log"
 	"net/http"
 	"strings"
 
