@@ -40,5 +40,7 @@ func Start() {
 		Handler: Router(),
 	}
 	fmt.Printf("Server online! using port %s\n", strings.Replace(port, ":", "", 1))
-	server.ListenAndServe()
+	if err := server.ListenAndServe(); err != nil {
+		log.Printf("Error: %s", err)
+	}
 }
