@@ -20,6 +20,7 @@ func Port() string {
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = ":8080"
+		return port
 	}
 	return ":" + port
 }
@@ -29,6 +30,7 @@ func Domain() string {
 	domain := os.Getenv("DOMAIN")
 	if domain == "" {
 		domain = "localhost/"
+		return domain
 	}
 	return domain + "/"
 }
